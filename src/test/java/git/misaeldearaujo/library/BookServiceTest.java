@@ -22,7 +22,7 @@ public class BookServiceTest {
 				+ "testtesttesttesttesttesttesttesttesttesttesttesttesttest"
 				+ "testtesttesttesttesttesttesttesttesttesttesttesttesttest"
 				+ "testtesttesttesttesttesttesttesttesttesttesttesttesttest")
-				.isbn("1234").releaseDate("data").build();
+				.isbn("1234").build();
 		
 		BookService bookService = BookService.builder().build();
 		
@@ -35,7 +35,7 @@ public class BookServiceTest {
 	@BeforeEach
 	void isNotFullBook() {
 		Book book = Book.builder().title("livro1").Author("testtesttestte")
-				.isbn("1234").releaseDate("data").build();
+				.isbn("1234").build();
 		
 		BookService bookService = BookService.builder().build();
 		
