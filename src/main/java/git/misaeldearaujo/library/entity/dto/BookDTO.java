@@ -8,8 +8,6 @@ public record BookDTO(
 		@NotEmpty
 		String author,
 		@NotEmpty
-		String isbn,
-		@NotEmpty
-		String releaseDate) {
+		String isbn) {
 
 }

@@ -1,0 +1,6 @@
+CREATE TABLE book_tb (
+id SERIAL NOT NULL,
+title VARCHAR (30) NOT NULL,
+author VARCHAR (30) NOT NULL,
+isbn VARCHAR (13) NOT NULL
+)

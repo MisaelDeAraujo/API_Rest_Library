@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,25 +23,26 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(value = "/library")
+@RequestMapping("library")
 @AllArgsConstructor
 public class BookController {
 
+	@Autowired
 	private BookService bookService;
 	
-	@RequestMapping(value = "/post", method = RequestMethod.POST)
+	@PostMapping
 	public ResponseEntity<Object> save(@Valid @RequestBody BookDTO bookDTO){
 		var book = Book.builder().build();
 		BeanUtils.copyProperties(bookDTO, book);
 		return ResponseEntity.status(HttpStatus.CREATED).body(bookService.save(book));
 	}
 	
-	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	@GetMapping
 	public ResponseEntity<List<Book>> findAll(){
 		return ResponseEntity.ok(bookService.findAll());
 	}
 	
-	@RequestMapping(value = "/put", method = RequestMethod.PUT)
+	@PutMapping
 	public ResponseEntity<Object> update(@PathVariable(value = "id") Integer id,
 			@RequestBody @Valid BookDTO bookDTO){
 		Optional<Book> bookId = bookService.findById(id);
