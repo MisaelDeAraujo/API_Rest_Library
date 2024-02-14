@@ -1,4 +1,3 @@
-# Ongoing Project
 ## Technologies:
 
 - Java 17
